@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="styles.css">
+    <title>Photo effects</title>
+</head>
+<body>
+    <section class="main">
+        <div class="img-erea">
+            <h1>Photo effects</h1>
+        <img id="img" src="photo.png" alt="photo">
+        
+        </div>
+        <input id="file" type="file" style="display: none;" onchange="readURL(this)">
+        <label for="file" id="select" class="btn btn-primary btn-sm " id="btn" style="width: 120px;margin: 10px auto;">select img</label>
+        <div class="input-erea">
+         
+ <div class="item">
+     <h4>border radius</h4>
+     <input type="range" id="radius" name="radius" min="0" max="100" value="0" data-sizing="%" step="5"
+     oninput="document.getElementById('radiusVal').innerHTML = this.value" />
+     <label id="radiusVal"></label>
+    </div>
+ <div class="item">
+     <h4>border width</h4> 
+     <input type="range" id="width" name="width" min="0"  max="100" data-sizing="px" value="0" step="5"
+     oninput="document.getElementById('widthVal').innerHTML=this.value";
+     >
+     <label id="widthVal"></label>
+    </div>
+ <div class="item">
+     <h4>border color</h4> 
+     <input type="color" id="color" name="color" value="#000000">
+    </div>
+ 
+ 
+ <div class="item">
+    <h4>opacity</h4> 
+     <input type="number"  id="opacity" name="opacity" value="100"  data-sizing="%"
+     oninput="document.getElementById('opacVal').innerHTML=this.value";
+     >
+     <label id="opacVal"></label>
+    </div>
+ <div class="item">
+     <h4>grayscale(%)</h4>
+     <input type="range" id="grayscale" name="grayscale" min="0" value="0" data-sizing="%" max="100" step="5"
+     oninput="document.getElementById('grayVal').innerHTML=this.value">
+     <label id="grayVal"></label>
+ </div>
+ <div class="item">
+     <h4>blur</h4>
+<input type="range" id="blur" value="0" data-sizing="px" min="0" max="100" step="5" name="blur" oninput="document.getElementById('blurVal').innerHTML=this.value">
+<label id="blurVal"></label>
+ </div>
+
+<div class="item">
+    <h4>brightness</h4>
+    <input type="number" name="brightness" value="100" step="5" oninput="document.getElementById('brightVal').innerHTML=this.value" data-sizing="%">
+    <label id="brightVal"></label>
+</div>
+</div>
+<button class="btn btn-primary btn-sm " id="btn" style="width: 120px;margin: 10px auto;">show code</button>
+<div class="code">
+<ul class="stylesList">
+    <li id="radiusList"></li>
+    <li id="grayList"></li>
+    <li id="widthList"></li>
+    <li id="colorList"></li>
+    <li id="blurList"></li>
+    <li id="brightList"></li>
+</ul>
+    </section>
+    
+    <script>
+     const inputs = document.querySelectorAll('.item input');
+     const btn =document.getElementById("btn");
+     function handeleClick(){
+         const img=document.querySelector("#img");
+         var style=getComputedStyle(img);
+         var radiusVal=( document.getElementById("radiusVal").innerText + "px");
+         var grayscaleVal=(document.getElementById("grayVal").innerText + "%");
+         var borderWidth=document.getElementById("widthVal").innerText + "px";
+         var opacityVal=document.getElementById("opacVal").innerText + "%";
+         var color=document.getElementById("color").value;
+         var blurVal=document.getElementById("blurVal").innerText + "px";
+         var brightVal=document.getElementById("brightVal").innerText + "%";
+         document.getElementById("radiusList").innerHTML="border-radius : "+`${radiusVal}`+ ";";
+         document.getElementById("grayList").innerHTML="filter : grayscale(" +grayscaleVal+") ;"; 
+         document.getElementById("widthList").innerHTML="border-width : " +borderWidth + " ;";
+         document.getElementById("colorList").innerHTML="border-color : "+color + " ;";
+         document.getElementById("blurList").innerHTML="filter:blur("+blurVal+");";
+         document.getElementById("brightList").innerHTML="filter:brightness("+ brightVal + ") ;";
+         document.querySelector(".code").style.display="block";
+
+     }
+     btn.addEventListener("click",handeleClick);
+function handleUpdate() {
+  const suffix = this.dataset.sizing || '';
+
+  document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+  
+}
+const img=document.getElementById("img");
+
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                img.setAttribute('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+inputs.forEach(input => input.addEventListener('change', handleUpdate));
+inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
+
+</script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,107 @@
+body {
+    background-color: #dddddd;
+    background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    color:#222831;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+:root {
+    --radius:0%;
+    --width:0px;
+    --color:#00000;
+    --blur:2px;
+    --brightness:100%;
+    --opacity:100%;
+    --grayscale:0%;
+}
+.main {
+    display: grid;
+    justify-content: center;
+    padding: 15px;
+    margin-top: 50px;
+}
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 900;
+  padding: 30px;
+
+}
+li {
+    list-style: none;
+}
+ul {
+    padding: 15px;
+}
+img {
+    filter: blur(var(--blur));
+   height: 400px;
+    width: 500px;
+    border-radius: var(--radius);
+   border-style: solid;
+   border-color: var(--color);
+   border-width: var(--width);
+ text-align: center;
+   margin: 0 auto;
+   filter: grayscale(var(--grayscale));
+   opacity: var(--opacity);
+   -webkit-filter: blur(var(--blur));
+
+}
+#img {
+    filter: blur(var(--blur));
+    filter: brightness(var(--brightness));
+    -webkit-filter: blur(var(--blur));
+    -webkit-filter:brightness(var(--brightness));
+    filter: grayscale(var(--grayscale));
+    -webkit-filter: grayscale(var(--grayscale));
+
+}
+input {
+    width: 140px;
+}
+.input-erea {
+display: grid;
+margin-top: 20px;
+grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+grid-row-gap:6px ;
+grid-column-gap: 6px;
+
+}
+.img-erea {
+    padding: 30px;
+    display: grid;
+    justify-content: center;
+}
+.code {
+    margin-top: 25px;
+    border-radius: 15px;
+    box-shadow:2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    color:  #d8d3cd;
+    font-size: 18px;
+    max-width: 900px;
+    text-align: left;
+    display: none;
+    background-color: #393b44;
+    padding: 15px;
+   
+}
+.item  {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow:2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+   
+}
+@media (max-width:800px ){
+    h1 {
+        font-size: 2.5rem;
+    }
+#img {
+    height: 200px;
+    width: 300px;
+}  
+  }
